@@ -1,27 +1,539 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* styles/globals.css */
+body{
+  background-image: linear-gradient(to top, #090a1a 0%, #1d1937 100%);
+} 
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.month-buttons {
+  display: grid;
+  font-family: 'Ubuntu';
+  grid-template-columns: repeat(3, 1fr); /* Divide the grid into 3 equal columns */
+  gap: 10px;
+  justify-items: center; 
+  
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.logout-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.month-button {
+  font-family: 'Ubuntu';
+  margin-top:15px;
+  margin-bottom: 20px;
+  /* Your existing button styles */
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.month-button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.month-button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+/* styles/globals.css */
+.month-page {
+  margin: 20px;
+}
+.month-page h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: whitesmoke;
+}
+
+.date-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  max-width: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(14.28% - 10px);
+  width:50px;
+  
+  margin-bottom: 15px;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+.input-group label {
+  margin-right: 10px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px; /* Increase the font size for labels on mobile */
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  /* Responsive styles for smaller screens */
+  .date-inputs {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 8px; /* Adjust the font size for input boxes on smaller screens */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.total-salary {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
 }
+
+.total-salary label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.total-salary span {
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.heading-container{
+  margin-left:20px;
+}
+
+.login-page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.content h1 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.content button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+hmtl,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1b1834;
+}
+
+.diamondCon {
+  width: 200px;
+  height: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+}
+
+.diamond {
+  display: block;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.diamond li {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  opacity: 0;
+  z-index: 100;
+  transition: 400ms ease;
+}
+
+.diamond li:nth-child(1) {
+  border-width: 20px 20px 0 20px;
+  border-color: #00F5FF transparent transparent transparent;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: traingle1 200ms 2.2s ease, opacity 2s 2.4s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(2) {
+  border-width: 0 20px 20px 20px;
+  border-color: transparent transparent #00F5FF;
+  left: 59px;
+  animation: traingle2 200ms 1.8s ease, opacity 2s 2.4s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(3) {
+  border-width: 0 20px 20px 20px;
+  border-color: transparent transparent #00F5FF;
+  right: 59px;
+  animation: traingle3 200ms 2s ease, opacity 2s 2.4s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(4) {
+  border-width: 0 20px 20px 20px;
+  border-width: 20px 20px 0 20px;
+  border-color: #00F5FF transparent transparent transparent;
+  animation: traingle4 200ms 1.6s ease, opacity 2s 2.6s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(5) {
+  border-width: 0 20px 20px 20px;
+  border-width: 20px 20px 0 20px;
+  border-color: #00F5FF transparent transparent transparent;
+  animation: traingle5 200ms 1.4s ease, opacity 2s 2.6s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(6) {
+  border-width: 0 20px 20px 20px;
+  border-color: transparent transparent #00F5FF;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: traingle6 200ms 1.2s ease, opacity 2s 2.6s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.diamond li:nth-child(7) {
+  border-width: 20px 20px 0 20px;
+  border-color: #00F5FF transparent transparent transparent;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: traingle7 200ms 1s ease, opacity 2s 2.8s ease infinite;
+  animation-fill-mode: forwards;
+}
+
+.textCon {
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px;
+  font-family: Dancing Script;
+  color: whitesmoke;
+  opacity: 0;
+  animation: text 500ms 2.4s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes traingle1 {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle2 {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  100% {
+    top: 1px;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle3 {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  100% {
+    top: 1px;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle4 {
+  0% {
+    right: 59px;
+    top: -33px;
+    opacity: 0;
+  }
+  100% {
+    right: 59px;
+    top: 22px;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle5 {
+  0% {
+    left: 59px;
+    top: -33px;
+    opacity: 0;
+  }
+  100% {
+    left: 59px;
+    top: 22px;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle6 {
+  0% {
+    top: -33px;
+    opacity: 0;
+  }
+  100% {
+    top: 23px;
+    opacity: 1;
+  }
+}
+
+@keyframes traingle7 {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  100% {
+    top: 44px;
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes text {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  100% {
+    top: 70px;
+    opacity: 1;
+  }
+}
+
+
+
